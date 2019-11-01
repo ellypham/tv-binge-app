@@ -10,34 +10,36 @@ const Form = props => {
     hoursError
   } = props;
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="tvShow">What TV Show would you like to binge?</label>
-        <input
-          type="text"
-          id="tvShow"
-          name="showName"
-          value={showName}
-          onChange={handleChange}
-        />
+    <form className="form" onSubmit={handleSubmit}>
+      <label className="form__label" htmlFor="tvShow">
+        What TV Show would you like to binge?
+      </label>
+      <input
+        className="form__input"
+        type="text"
+        id="tvShow"
+        name="showName"
+        value={showName}
+        onChange={handleChange}
+      />
+      <div className="form__error">
+        <span>{showNameError}</span>
       </div>
-      <div className="form-error">
-        <p>{showNameError}</p>
+      <label className="form__label" htmlFor="">
+        How many hours per day do you have?
+      </label>
+      <input
+        className="form__input"
+        type="text"
+        id="hoursDay"
+        name="hours"
+        value={hours}
+        onChange={handleChange}
+      />
+      <div className="form__error">
+        <span>{hoursError}</span>
       </div>
-      <div>
-        <label htmlFor="">How many hours per day do you have?</label>
-        <input
-          type="text"
-          id="hoursDay"
-          name="hours"
-          value={hours}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-error">
-        <p>{hoursError}</p>
-      </div>
-      <input type="submit" value="submit" />
+      <input className="form__button" type="submit" value="submit" />
     </form>
   );
 };

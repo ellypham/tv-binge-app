@@ -15,7 +15,8 @@ class App extends React.Component {
       showDetails: {},
       episodeRunTime: null,
       error: null,
-      isLoaded: false
+      isLoaded: false,
+      start: false
     };
   }
 
@@ -106,31 +107,71 @@ class App extends React.Component {
     }
   }
 
+  startBinge = () => {
+    this.setState({
+      start: true
+    });
+  };
+
+  searchAgain = () => {
+    this.setState({
+      showName: "",
+      hours: "",
+      showDetails: {}
+    });
+  };
+
+  renderHeader = () => {
+    return (
+      <header>
+        <div className="wrapper">
+          <h1>Can I binge?</h1>
+          <p>
+            Looking for a show to binge watch? Find out how long it will take to
+            binge your TV Season of choice
+          </p>
+          <button className="button" onClick={this.startBinge}>
+            Lets get started!
+          </button>
+        </div>
+      </header>
+    );
+  };
+
+  renderForm = () => {
+    return (
+      <Form
+        showName={this.state.showName}
+        hours={this.state.hours}
+        showNameError={this.state.showNameError}
+        hoursError={this.state.hoursError}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+      />
+    );
+  };
+
+  renderShowDetails = () => {
+    return (
+      <ShowDetails
+        showDetails={this.state.showDetails}
+        episodeRunTime={this.state.episodeRunTime}
+        hours={this.state.hours}
+        error={this.state.error}
+        searchAgain={this.searchAgain}
+      />
+    );
+  };
+
   render() {
     return (
-      <div className="container">
-        <h1>Can I binge?</h1>
-        <p>
-          Looking for a show to binge watch? Find out how long it will take to
-          binge your TV Season of choice
-        </p>
-        <Form
-          showName={this.state.showName}
-          hours={this.state.hours}
-          showNameError={this.state.showNameError}
-          hoursError={this.state.hoursError}
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-        />
-        {this.state.tvShowList.length > 0 ? (
-          <ShowDetails
-            showDetails={this.state.showDetails}
-            episodeRunTime={this.state.episodeRunTime}
-            hours={this.state.hours}
-            error={this.state.error}
-          />
-        ) : null}
-      </div>
+      <React.Fragment>
+        {this.state.start === false ? this.renderHeader() : null}
+        {this.state.start ? this.renderForm() : null}
+        {this.state.tvShowList.length > 0 && this.state.showName !== ""
+          ? this.renderShowDetails()
+          : null}
+      </React.Fragment>
     );
   }
 }
