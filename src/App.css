@@ -1,6 +1,63 @@
-.container {
+.wrapper {
   margin: 0 auto;
   max-width: 960px;
-
   padding: 0 10 0 10;
+}
+
+h1, h3, p {
+  font-family: 'Oswald', sans-serif;
+  color: white;
+}
+
+h1 {
+  font-size: 56px;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 24px;
+}
+
+header, .form, .showDetails {
+  background-image: url(../src/images/watching_tv.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.header__copy, .showDetails__copy {
+  text-align: center;
+  padding: 30px;
+  background-color: rgba(7, 2, 2, 0.5);
+}
+
+.form__input, .form_label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.form__error span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  color: white;
+}
+
+.button {
+  font-family: 'Oswald', sans-serif;
+  padding: 20px;
+  font-size: 24px;
+}
+
+.form__button {
+  margin-top: 20px;
 }

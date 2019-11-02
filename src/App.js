@@ -16,7 +16,8 @@ class App extends React.Component {
       episodeRunTime: null,
       error: null,
       isLoaded: false,
-      start: false
+      start: false,
+      displayForm: false
     };
   }
 
@@ -69,7 +70,8 @@ class App extends React.Component {
         .then(data =>
           this.setState({
             tvShowList: data.results,
-            isLoaded: true
+            isLoaded: true,
+            displayForm: false
           })
         )
         .catch(error => this.setState({ error, isLoaded: true }));
@@ -105,11 +107,17 @@ class App extends React.Component {
           );
       }
     }
+    window.scrollTo({
+      top: window.innerHeight,
+      left: 0,
+      behavior: "smooth"
+    });
   }
 
   startBinge = () => {
     this.setState({
-      start: true
+      start: true,
+      displayForm: true
     });
   };
 
@@ -117,7 +125,7 @@ class App extends React.Component {
     this.setState({
       showName: "",
       hours: "",
-      showDetails: {}
+      showDetails: ""
     });
   };
 
@@ -125,14 +133,16 @@ class App extends React.Component {
     return (
       <header>
         <div className="wrapper">
-          <h1>Can I binge?</h1>
-          <p>
-            Looking for a show to binge watch? Find out how long it will take to
-            binge your TV Season of choice
-          </p>
-          <button className="button" onClick={this.startBinge}>
-            Lets get started!
-          </button>
+          <div className="header__copy">
+            <h1>Can I binge?</h1>
+            <p>
+              Looking for a show to binge watch? Find out how long it will take
+              to binge your TV Season of choice
+            </p>
+            <button className="button" onClick={this.startBinge}>
+              Lets get started!
+            </button>
+          </div>
         </div>
       </header>
     );
@@ -166,9 +176,8 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.start === false ? this.renderHeader() : null}
-        {this.state.start ? this.renderForm() : null}
-        {this.state.tvShowList.length > 0 && this.state.showName !== ""
+        {this.state.start === false ? this.renderHeader() : this.renderForm()}
+        {this.state.tvShowList.length > 0 && this.state.showDetails
           ? this.renderShowDetails()
           : null}
       </React.Fragment>
