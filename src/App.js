@@ -125,7 +125,8 @@ class App extends React.Component {
     this.setState({
       showName: "",
       hours: "",
-      showDetails: ""
+      showDetails: "",
+      start: false
     });
   };
 

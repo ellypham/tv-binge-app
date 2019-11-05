@@ -29,7 +29,7 @@ const ShowDetails = props => {
               : `There is ${number_of_episodes} episode.`}
           </p>
           <p>
-            {hours > 1 && days > 1
+            {hours > 1
               ? `With ${hours} hours a day, you'll be able to watch this entire season in
             approximately ${days} days.`
               : `With ${hours} hour a day, you'll be able to watch this entire season in

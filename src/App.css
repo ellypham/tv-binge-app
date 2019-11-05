@@ -56,8 +56,47 @@ header, .form, .showDetails {
   font-family: 'Oswald', sans-serif;
   padding: 20px;
   font-size: 24px;
+  text-transform: uppercase;
 }
 
 .form__button {
   margin-top: 20px;
+}
+
+@media(max-width: 768px) {
+  .wrapper {
+    max-width: 600px;
+  }
+  h1 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+}
+
+@media(max-width: 414px) {
+  .wrapper {
+    max-width: 300px;
+  }
+}
+
+@media(min-width: 320px) {
+  .button {
+    font-family: 'Oswald', sans-serif;
+    padding: 20px;
+    font-size: 18px;
+    background: white;
+  }
+  .form__input {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 18px;
+  }
 }
